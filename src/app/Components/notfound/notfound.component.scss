@@ -1,0 +1,14 @@
+.error {
+  height: 100vh;
+  background-color: black;
+  &-message {
+    height: 100%;
+    color: white;
+    text-decoration: underline;
+  }
+  &-code {
+    color: red;
+    font-weight: bolder;
+    letter-spacing: -3px;
+  }
+}

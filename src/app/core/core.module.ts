@@ -1,6 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {LoginUserService} from "./services/login-user.service";
+import {AuthService} from "./services/auth.service";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 
 
@@ -9,10 +10,10 @@ import {LoginUserService} from "./services/login-user.service";
   imports: [
     CommonModule
   ],
-  providers: [LoginUserService]
+  providers: [AuthService]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {
-    return {ngModule: CoreModule, providers: [LoginUserService]}
+    return {ngModule: CoreModule, providers: [AuthService, AuthGuardService]}
   }
 }

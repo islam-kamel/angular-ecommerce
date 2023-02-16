@@ -9,7 +9,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { ProductsComponent } from './Components/products/products.component';
 import {CoreModule} from "./core/core.module";
-import { NotfoundComponent } from './notfound/notfound.component';
+import { NotfoundComponent } from './Components/notfound/notfound.component';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     MainLayoutComponent,
     ProductsComponent,
     NotfoundComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
