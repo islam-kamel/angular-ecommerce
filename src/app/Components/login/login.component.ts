@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../core/services/auth.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -8,26 +8,28 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  loginForm: FormGroup;
 
-
-  constructor(private auth: AuthService) {
-
+  constructor(private auth: AuthService, private fb: FormBuilder) {
+    this.loginForm = this.initForm();
   }
 
-  get email(): FormControl {
-    return this.auth.email;
+  get email(): FormControl {return this.loginForm.controls["email"] as FormControl;}
+
+  get password(): FormControl {return this.loginForm.controls["password"] as FormControl;}
+
+  login(): void {
+    let {...data}= this.loginForm.value
+    this.auth.login(data);
   }
 
-  get password(): FormControl {
-    return this.auth.password;
-  }
+  initForm(): FormGroup {
+    let form: FormGroup = this.fb.group({
+      email: ["", [Validators.email, Validators.required]],
+      password: ["", [Validators.required]]
+    }, {updateOn: "blur"})
 
-  get loginForm(): FormGroup {
-    return this.auth.loginForm;
-  }
-
-  login() {
-    this.auth.login();
+    return form;
   }
 
 }
