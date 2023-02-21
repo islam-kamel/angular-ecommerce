@@ -3,9 +3,7 @@ import {environment} from "environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class ApiService {
 
   headers: HttpHeaders;

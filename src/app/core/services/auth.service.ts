@@ -4,9 +4,7 @@ import {ApiService} from "./api.service";
 import {Session, User} from "../types";
 import {map, Observable} from "rxjs";
 
-@Injectable({
-  providedIn: "root"
-})
+@Injectable()
 export class AuthService {
   loginFrom: FormGroup;
   _sessionKey: string;

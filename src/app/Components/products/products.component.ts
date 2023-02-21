@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-products',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+  form: any = "";
 
+  constructor() {
+
+    console.log(this.form)
+  }
+
+  recvForm(value: FormGroup) {
+    console.log(value)
+  }
 }

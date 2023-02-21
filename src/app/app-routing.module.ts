@@ -4,7 +4,7 @@ import {AuthorizationGuard} from "./core/guards/authorization-guard";
 import {ProductsComponent} from "./Components/products/products.component";
 
 const appRoutes: Routes = [
-  {path: "login", component: ProductsComponent, canActivate: [AuthorizationGuard]}
+  {path: "products", component: ProductsComponent, canActivate: [AuthorizationGuard]}
 ]
 
 @NgModule({

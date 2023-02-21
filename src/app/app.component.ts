@@ -8,7 +8,4 @@ import {AuthService} from "./core/services/auth.service";
 })
 export class AppComponent {
   title = 'e-commerce';
-
-  constructor() {
-  }
 }

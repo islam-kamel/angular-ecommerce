@@ -11,7 +11,7 @@ export class AuthorizationGuard implements CanActivate {
   }
   canActivate(): boolean {
     console.log(this._auth.session)
-    return false;
+    return !!this._auth.session;
   }
 
 }
