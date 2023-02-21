@@ -1,0 +1,13 @@
+.error {
+  visibility: hidden;
+
+  &-active {
+    opacity: 0;
+    visibility: visible;
+    animation: ease-in .5s  errors forwards;
+  }
+}
+
+@keyframes errors {
+  100% {opacity: 1}
+}

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {AuthService} from "src/app/core/services/auth.service";
 
 @Component({
   selector: 'app-products',
@@ -7,7 +6,5 @@ import {AuthService} from "src/app/core/services/auth.service";
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-  constructor(private login: AuthService) {
-  }
 
 }

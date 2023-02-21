@@ -1,34 +1,24 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { UserComponent } from './Components/user/user.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
-import { FooterComponent } from './Components/footer/footer.component';
-import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
-import { ProductsComponent } from './Components/products/products.component';
 import {CoreModule} from "./core/core.module";
-import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { LoginComponent } from './Components/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {AuthorizationGuard} from "./core/guards/authorization-guard";
+import { ProductsComponent } from './Components/products/products.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserComponent,
-    NavbarComponent,
-    FooterComponent,
-    MainLayoutComponent,
-    ProductsComponent,
-    NotfoundComponent,
-    LoginComponent,
-  ],
+  declarations: [AppComponent, NavbarComponent, LoginComponent, ProductsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     CoreModule.forRoot(),
   ],
-  providers: [],
+  providers: [AppRoutingModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
