@@ -10,7 +10,6 @@ export class AuthorizationGuard implements CanActivate {
   constructor(private _auth: AuthService) {
   }
   canActivate(): boolean {
-    console.log(this._auth.session)
     return !!this._auth.session;
   }
 
