@@ -70,6 +70,22 @@
       "username": "islam-kamel",
       "email": "eslam.kamel@mail.ru",
       "password": "12345678"
+    },
+    {
+      "fullName": "islam.kamel",
+      "email": "islam@kamel.com",
+      "address": {
+        "city": "ques",
+        "street": "qena",
+        "state": "Qena",
+        "zip": "8362"
+      },
+      "phones": [
+        "01066373279",
+        "01067623066"
+      ],
+      "password": "123",
+      "id": 2
     }
   ]
 }

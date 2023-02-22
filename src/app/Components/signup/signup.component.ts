@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormValidators} from "../../core/services/form-validatetors.validator";
+import {ApiService} from "../../core/services/api.service";
+import {RegisterUser} from "../../core/types";
 
 @Component({
   selector: 'app-singup',
@@ -10,7 +12,7 @@ import {FormValidators} from "../../core/services/form-validatetors.validator";
 export class SignupComponent {
   signup: FormGroup;
 
-  constructor(private fb: FormBuilder, private formValidators: FormValidators) {
+  constructor(private fb:FormBuilder, private formValidators:FormValidators, private api:ApiService) {
     this.signup = this.createFormItem();
 
     this.phones.valueChanges.subscribe((value: string[]) => {
@@ -41,7 +43,9 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    console.log(this.signup.value)
+    let data = structuredClone(this.signup.getRawValue());
+    delete data['confirm'];
+    this.signup.valid? this.api.post('users', JSON.stringify(data)).subscribe(e => console.log(e)): null
   }
 
   createFormItem(): FormGroup {
