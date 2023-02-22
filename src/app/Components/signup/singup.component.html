@@ -42,7 +42,7 @@ Create custom Async Validator for checking if the email used
 
 -->
 <ng-template #form>
-  <form [formGroup]="signup">
+  <form [formGroup]="signup" (ngSubmit)="onSubmit()">
     <div class="input-group mb-3">
       <input formControlName="fullName" type="text" class="form-control" placeholder="Full Name" aria-label="FullName">
     </div>
@@ -117,14 +117,15 @@ Create custom Async Validator for checking if the email used
     </ng-container>
 
     <div class="input-group mb-3">
-      <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+      <input [class.is-invalid]= "signup.controls['password'].errors && signup.controls['password'].dirty" formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password">
       <input formControlName="confirm" type="password" class="form-control" placeholder="Retype Password" aria-label="Confirm Password">
     </div>
 
-    <button class="btn btn-success d-block w-100">Register</button>
+    <button [disabled]="signup.invalid" class="btn btn-success d-block w-100">Register</button>
 
     {{signup.value | json}}
-    {{signup.controls['email'].errors | json }}
+    {{signup.controls['fullName'].errors | json }}
     <hr>
+    {{signup.controls['password'].errors | json}}
   </form>
 </ng-template>
