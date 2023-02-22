@@ -5,7 +5,8 @@ export interface User {
   address: {
     city: string,
     zipCode: number,
-    street: string
+    street: string,
+    state: string,
   }
 }
 

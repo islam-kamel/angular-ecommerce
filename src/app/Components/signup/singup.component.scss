@@ -1,0 +1,14 @@
+.loader::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  animation: linear forwards .5s infinite spin;
+}
+
+@keyframes spin {
+  100% {rotate: 360deg}
+}

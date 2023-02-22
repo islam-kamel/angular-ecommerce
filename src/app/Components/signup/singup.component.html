@@ -42,55 +42,89 @@ Create custom Async Validator for checking if the email used
 
 -->
 <ng-template #form>
-  <form>
+  <form [formGroup]="signup">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Full Name" aria-label="FullName">
+      <input formControlName="fullName" type="text" class="form-control" placeholder="Full Name" aria-label="FullName">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2">
-      <span class="input-group-text" id="basic-addon2">@example.com</span>
+      <input
+        [ngClass]="{'is-valid': email.valid, 'is-invalid': email.invalid && email.dirty && email.touched}"
+        formControlName="email"
+        type="text" class="form-control"
+        placeholder="Email Address"
+        aria-label="Email Address"
+        aria-describedby="basic-addon2"
+      >
+      <span  *ngIf="email.pending" class="input-group-text loader" id="basic-addon2"></span>
     </div>
 
-    <ng-container>
+    <ng-container formArrayName="phones">
+
       <label for="phone-number" class="form-label">Mobile</label>
-      <div class="input-group mb-1">
-        <input type="text" class="form-control" id="phone-number" placeholder="Mobile Number">
-      </div>
+      <ng-container *ngFor="let phone of phones.controls; let i=index">
+        <div class="input-group mb-1">
+          <input
+            [formControlName]="i"
+            type="text"
+            class="form-control"
+            id="phone-number"
+            placeholder="Mobile Number"
+            aria-describedby="button-addon2"
+          >
+          <button
+            *ngIf="i > 0"
+            (click)="deletePhone(i)"
+            class="btn btn-outline-danger"
+            type="button"
+            id="button-addon2"
+          >
+            Delete
+          </button>
+        </div>
+      </ng-container>
 
       <div class="mb-3">
-        <button type="button" class="btn btn-sm btn-primary">Add Other</button>
+        <button (click)="addPhone()" type="button" class="btn btn-sm btn-primary">Add Other</button>
       </div>
     </ng-container>
 
-    <ng-container>
+    <ng-container formGroupName="address">
       <label for="address" class="form-label">Address</label>
       <div class="row g-3 mb-3" id="address">
+        <div class="col-12">
+          <label for="inputStreet" class="form-label">Street</label>
+          <input formControlName="street" type="text" class="form-control" id="inputStreet">
+        </div>
         <div class="col-md-6">
           <label for="inputCity" class="form-label">City</label>
-          <input type="text" class="form-control" id="inputCity">
+          <input formControlName="city" type="text" class="form-control" id="inputCity">
         </div>
         <div class="col-md-4">
           <label for="inputState" class="form-label">State</label>
-          <select id="inputState" class="form-select">
+          <select formControlName="state" id="inputState" class="form-select">
             <option selected value="0">Choose...</option>
-            <option value="1">Qena</option>
-            <option value="2">Qus</option>
-            <option value="3">Cairo</option>
+            <option value="Qena">Qena</option>
+            <option value="Qus">Qus</option>
+            <option value="Cairo">Cairo</option>
           </select>
         </div>
         <div class="col-md-2">
           <label for="inputZip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
+          <input formControlName="zip" type="text" class="form-control" id="inputZip">
         </div>
       </div>
     </ng-container>
 
     <div class="input-group mb-3">
-      <input type="password" class="form-control" placeholder="Password" aria-label="Password">
-      <input type="password" class="form-control" placeholder="Retype Password" aria-label="Confirm Password">
+      <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+      <input formControlName="confirm" type="password" class="form-control" placeholder="Retype Password" aria-label="Confirm Password">
     </div>
 
     <button class="btn btn-success d-block w-100">Register</button>
+
+    {{signup.value | json}}
+    {{signup.controls['email'].errors | json }}
+    <hr>
   </form>
 </ng-template>
