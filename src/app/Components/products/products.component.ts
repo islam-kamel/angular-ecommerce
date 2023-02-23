@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {Component} from '@angular/core';
+import {ApiService} from "../../core/services/api.service";
+import {IProduct} from "../../core/types";
 
 @Component({
   selector: 'app-products',
@@ -7,14 +8,13 @@ import {FormGroup} from "@angular/forms";
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-  form: any = "";
 
-  constructor() {
-
-    console.log(this.form)
+  products!: IProduct[];
+  constructor(private api: ApiService) {
+    this.api.get<IProduct[]>('products').subscribe(value => {
+      this.products = value;
+    })
   }
 
-  recvForm(value: FormGroup) {
-    console.log(value)
-  }
+
 }

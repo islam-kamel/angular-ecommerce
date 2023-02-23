@@ -5,13 +5,22 @@ import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ApiService} from "./services/api.service";
 import {FormValidators} from "./services/form-validatetors.validator";
+import {LoginComponent} from "../Components/login/login.component";
+import {ProductsComponent} from "../Components/products/products.component";
+import {SignupComponent} from "../Components/signup/signup.component";
+import {ReactiveFormsModule} from "@angular/forms";
+
+
+const shared = [LoginComponent, ProductsComponent, SignupComponent]
 
 @NgModule({
-  declarations: [],
+  declarations: [shared],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
+  exports: [shared]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {
