@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import {ApiService} from "@core/services/api.service";
 import {IProduct} from "@core/types";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProductService {
 
   constructor(private api: ApiService) { }

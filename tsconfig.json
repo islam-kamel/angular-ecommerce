@@ -8,6 +8,7 @@
       "@reusable/*": ["./src/app/Reusable/*"],
       "@core/*": ["./src/app/core/*"],
       "@components/*": ["./src/app/Components/*"],
+      "@modules/*": ["./src/app/modules/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
