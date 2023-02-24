@@ -11,6 +11,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {InputComponent} from "@reusable/input/input.component";
 import {ProductComponent} from "@reusable/product/product.component";
 import {DiscountPipe} from "@core/pipes/discount.pipe";
+import {AddProductComponent} from "@components/add-product/add-product.component";
+import {ProductService} from "@core/services/product.service";
 
 
 const shared = [
@@ -19,6 +21,7 @@ const shared = [
   SignupComponent,
   InputComponent,
   ProductComponent,
+  AddProductComponent,
   DiscountPipe,
 ]
 
@@ -35,7 +38,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
-      providers: [AuthService, ApiService, FormValidators],
+      providers: [AuthService, ApiService, FormValidators, ProductService],
     };
   }
 }

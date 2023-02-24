@@ -1,3 +1,5 @@
+import {AbstractControl, FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+
 export interface User {
   username: string,
   email: string,
@@ -20,15 +22,18 @@ export interface Session {
   token: string;
 }
 
+export interface Category {
+  name: string
+}
+
 export interface IProduct {
   name: string;
-  category: number;
+  description: string;
+  category: {id: number, name: string};
   qty: number,
   price: number,
   image?: string;
 
   [key: string]: any; // Recommend to use key for id;
 }
-
-
 

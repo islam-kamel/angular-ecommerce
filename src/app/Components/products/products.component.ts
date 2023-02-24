@@ -24,5 +24,8 @@ export class ProductsComponent {
     })
   }
 
+  cart(event: any) {
+    console.log(event)
+  }
 
 }

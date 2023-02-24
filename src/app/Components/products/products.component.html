@@ -34,13 +34,14 @@
       >
         <app-product
           [title]="product.name"
+          [category]="product.category.name"
           [price]="product.price"
           [qty]="product.qty"
           [image]="product.image"
+          [discount]="product['discount']"
+          [description]="product.description"
+          [handelCart]="cart"
         >
-          <ng-container class="additional " *ngIf="product['discount']">
-            <span class="additional badge text-bg-warning">{{product.price | discount: product['discount']}}</span>
-          </ng-container>
         </app-product>
       </div>
     </div>

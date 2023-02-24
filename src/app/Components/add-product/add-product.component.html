@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 mb-5 border-bottom py-2">
+      <div class="alert alert-primary">
+        <h1 class="text-center fw-bold m-0 p-0">Add Awesome Product 🎊</h1>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card text-bg-dark">
+        <img
+          [src]="image.value && image.valid ? image.value : 'https://epay.slcc.edu/C20011_ustores/web/images/product-default-image.png'"
+          alt="..."
+          class="card-img"
+        >
+      </div>
+    </div>
+    <div class="col-12 col-md-8">
+
+      <hr class="d-block d-md-none py-3">
+
+      <form [formGroup]="productForm" class="row g-3">
+
+        <div class="col-md-6">
+
+          <label class="form-label" for="basic-url">Image URL</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">https://www</span>
+            <input aria-describedby="basic-addon3" class="form-control" formControlName="image" id="basic-url"
+                   type="url">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <app-input
+            [class.is-invalid]="this.name.invalid"
+            [form]="productForm"
+            className="form-control"
+            controlName="name"
+            label="Title"
+          >
+          </app-input>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label" for="desc">Description</label>
+          <textarea class="form-control" formControlName="description" id="desc" rows="3"></textarea>
+        </div>
+
+        <div class="col-12">
+          <app-input
+            [class.is-invalid]="this.price.invalid"
+            [form]="productForm"
+            className="form-control"
+            controlName="price"
+            label="Price"
+          >
+          </app-input>
+        </div>
+
+        <div class="col-md-6">
+          <app-input
+            [class.is-invalid]="this.qty.invalid"
+            [form]="productForm"
+            className="form-control"
+            controlName="qty"
+            label="QTY"
+          >
+          </app-input>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label" for="category">Category</label>
+          <select class="form-select" formControlName="category" id="category">
+            <option *ngFor="let category of categories " [value]="category.id">{{category.name}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <button class="d-block btn btn-primary w-25" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
