@@ -1,23 +1,26 @@
 <div class="container web-banner position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
   <div class="web-banner-container col-md-5 p-lg-5 my-auto my-5 text-md-start">
     <h1 class="display-4 fw-bold text-light">Welcome To Angular Products</h1>
-    <p class="lead fw-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
+    <p class="lead fw-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example
+      based on Apple’s marketing pages.</p>
     <a class="btn btn-warning" href="#">Coming soon</a>
   </div>
 </div>
-
 <section class="container">
-  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-      <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" href="/">
+      <svg aria-label="Bootstrap" class="bi me-2" height="32" role="img" width="40">
+        <use xlink:href="#bootstrap"></use>
+      </svg>
     </a>
 
     <ul class="nav col-12 mb-2 justify-content-center mb-md-0">
-      <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+      <li><a class="nav-link px-2 link-secondary" href="#">Home</a></li>
+      <li><a class="nav-link px-2 link-dark" href="#">Features</a></li>
+      <li><a class="nav-link px-2 link-dark" href="#">Pricing</a></li>
+      <li><a class="nav-link px-2 link-dark" href="#">FAQs</a></li>
+      <li><a class="nav-link px-2 link-dark" href="#">About</a></li>
     </ul>
 
   </header>
@@ -29,24 +32,30 @@
         *ngFor="let product of products"
         class="col"
       >
-        <div class="card shadow-sm">
-          <img [src]="product.image" class="bd-placeholder-img card-img-top">
-          <div class="card-body">
-            <h5 class="card-title fw-bold fs-5">{{product.name}}</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="fs-6 text-bg-light px-1 py-3 rounded fw-500">Price: <span class="text-success">{{product.price | currency}}</span></p>
-            <div class="d-flex justify-content-between align-items-center">
-              <button type="button" class="btn btn-sm btn-warning">Add to cart</button>
-              <small [ngClass]="{'text-danger': product.qty < 2, 'text-muted': product.qty >= 2}">QTY: {{product.qty}}</small>
-            </div>
-          </div>
-        </div>
+        <app-product
+          [title]="product.name"
+          [price]="product.price"
+          [qty]="product.qty"
+          [image]="product.image"
+        >
+          <ng-container class="additional " *ngIf="product['discount']">
+            <span class="additional badge text-bg-warning">{{product.price | discount: product['discount']}}</span>
+          </ng-container>
+        </app-product>
       </div>
     </div>
   </div>
 </ng-container>
-<div class="grid" >
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  ...
-</div>
+
+<!--<div [formGroup]="form" class="container">-->
+<!--  <app-dynamic-input-->
+<!--    [class.is-invalid]="this.form.controls['input'].invalid"-->
+<!--    [form]="form"-->
+<!--    className="form-control"-->
+<!--    controlName="input"-->
+<!--    label="Email"-->
+<!--  >-->
+<!--    <span class="error">Error</span>-->
+<!--  </app-dynamic-input>-->
+<!--  {{form.controls['input'].valid | json}}-->
+<!--</div>-->

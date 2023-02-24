@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../core/services/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -24,12 +24,10 @@ export class LoginComponent {
   }
 
   initForm(): FormGroup {
-    let form: FormGroup = this.fb.group({
+    return this.fb.group({
       email: ["", [Validators.email, Validators.required]],
       password: ["", [Validators.required]]
-    }, {updateOn: "blur"})
-
-    return form;
+    }, {updateOn: "blur"});
   }
 
 }

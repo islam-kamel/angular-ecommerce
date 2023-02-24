@@ -6,14 +6,14 @@ import {NavbarComponent} from './Components/navbar/navbar.component';
 import {CoreModule} from "./core/core.module";
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule.forRoot(),
-  ],
-  providers: [AppRoutingModule],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, NavbarComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CoreModule.forRoot(),
+    ],
+    providers: [AppRoutingModule],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
