@@ -19,11 +19,11 @@ export class ApiService {
     return this._client.get<T>(`${this.baseUrl}/${endpoint}`, {headers: this.headers});
   }
 
-  post<T>(endpoint: string, data: T): Observable<T> {
+  post<T>(endpoint: string, data:(T|any) ): Observable<T> {
     return this._client.post<T>(`${this.baseUrl}/${endpoint}`, data, {headers: this.headers});
   }
 
-  put<T>(endpoint: string, data: T): Observable<T> {
+  put<T>(endpoint: string, data:(T|any) ): Observable<T> {
     return this._client.put<T>(`${this.baseUrl}/${endpoint}`, data, {headers: this.headers});
   }
 

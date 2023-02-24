@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "@core/services/api.service";
-import {Category} from "@core/types";
-import {KeyValue} from "@angular/common";
+import {ProductService} from "@core/services/product.service";
+import {FormValidators} from "@core/services/form-validatetors.validator";
 
 @Component({
   selector: 'app-add-product',
@@ -12,28 +12,48 @@ import {KeyValue} from "@angular/common";
 export class AddProductComponent implements OnInit {
 
   productForm: FormGroup;
-  categories: {name: string, id: number}[];
+  categories: { name: string, id: number }[];
 
-  constructor(private fb: FormBuilder, private api: ApiService) {
+  constructor(private fb: FormBuilder, private api: ApiService, private pService: ProductService) {
     this.categories = [];
-
     this.productForm = this.initForm();
   }
 
+  get name(): FormControl {
+    return this.productForm.controls["name"] as FormControl;
+  }
+
+  get category(): FormControl {
+    return this.productForm.controls["category"] as FormControl;
+  }
+
+  get description(): FormControl {
+    return this.productForm.controls["description"] as FormControl;
+  }
+
+  get image(): FormControl {
+    return this.productForm.controls["image"] as FormControl;
+  }
+
+  get price(): FormControl {
+    return this.productForm.controls["price"] as FormControl;
+  }
+
+  get qty(): FormControl {
+    return this.productForm.controls["qty"] as FormControl;
+  }
+
+  get discount(): FormControl {
+    return this.productForm.controls["discount"] as FormControl;
+  }
+
   ngOnInit() {
-    this.api.get<{name: string, id:number}[]>("categories").subscribe(value => {
+    this.api.get<{ name: string, id: number }[]>("categories").subscribe(value => {
 
       this.categories = value;
 
     });
   }
-
-  get name(): FormControl {return this.productForm.controls["name"] as FormControl;}
-  get category(): FormControl {return this.productForm.controls["category"] as FormControl;}
-  get description(): FormControl {return this.productForm.controls["description"] as FormControl;}
-  get image(): FormControl {return this.productForm.controls["image"] as FormControl;}
-  get price(): FormControl {return this.productForm.controls["price"] as FormControl;}
-  get qty(): FormControl {return this.productForm.controls["qty"] as FormControl;}
 
   initForm(): FormGroup {
     return this.fb.group({
@@ -42,9 +62,23 @@ export class AddProductComponent implements OnInit {
       category: ["", Validators.required],
       description: ["", Validators.required],
       image: ["", Validators.pattern(/(https|http)/g)],
-      price: [0, [Validators.required, Validators.min(1)]],
-      qty: [0, [Validators.required, Validators.min(1)]]
+      price: ["", [Validators.required, Validators.min(1), FormValidators.removeNaN]],
+      qty: ["", [Validators.required, Validators.min(1), FormValidators.removeNaN]],
+      discount: ["", [Validators.max(100), FormValidators.removeNaN]]
 
     });
   }
+
+  onSubmit(): void {
+    let data = structuredClone(this.productForm.getRawValue());
+
+    for (let key in data) {
+      if (!isNaN(data[key])) data[key] = +data[key];
+    }
+
+    if (data["discount"]) data["discount"] /= 100;
+
+    this.pService.post(data).subscribe(value => console.log("Handel Me Add Product"));
+  }
+
 }

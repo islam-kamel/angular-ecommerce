@@ -37,6 +37,25 @@
       "image": "https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "qty": 1,
       "price": 23321
+    },
+    {
+      "name": "Islam Kamel",
+      "category": 2,
+      "description": "this is some text",
+      "image": "https://avatars.githubusercontent.com/u/61625045?v=4",
+      "price": 123134,
+      "qty": 122,
+      "id": 4
+    },
+    {
+      "name": "With Discount 50%",
+      "category": 2,
+      "description": "this is some text",
+      "image": "https://avatars.githubusercontent.com/u/61625045?v=4",
+      "price": 2023,
+      "qty": 123,
+      "discount": 0.5,
+      "id": 5
     }
   ],
   "categories": [

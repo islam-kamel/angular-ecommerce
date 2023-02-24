@@ -18,7 +18,7 @@
 
       <hr class="d-block d-md-none py-3">
 
-      <form [formGroup]="productForm" class="row g-3">
+      <form [formGroup]="productForm" class="row g-3" (ngSubmit)="productForm.valid ? onSubmit() : null">
 
         <div class="col-md-6">
 
@@ -68,13 +68,24 @@
         </div>
 
         <div class="col-md-6">
+          <app-input
+            [class.is-invalid]="discount.invalid"
+            [form]="productForm"
+            className="form-control"
+            controlName="discount"
+            label="Discount"
+          >
+          </app-input>
+        </div>
+
+        <div class="col-12">
           <label class="form-label" for="category">Category</label>
           <select class="form-select" formControlName="category" id="category">
             <option *ngFor="let category of categories " [value]="category.id">{{category.name}}</option>
           </select>
         </div>
         <div class="col-12">
-          <button class="d-block btn btn-primary w-25" type="submit">Add</button>
+          <button [disabled]="productForm.invalid" class="d-block btn btn-primary w-25" type="submit">Add</button>
         </div>
       </form>
     </div>
