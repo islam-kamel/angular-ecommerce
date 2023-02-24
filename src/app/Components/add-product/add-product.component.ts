@@ -13,6 +13,7 @@ export class AddProductComponent implements OnInit {
 
   productForm: FormGroup;
   categories: { name: string, id: number }[];
+  defaultImage: string = "https://shopnguyenlieumypham.com/wp-content/uploads/no-image/product-456x456.jpg";
 
   constructor(private fb: FormBuilder, private api: ApiService, private pService: ProductService) {
     this.categories = [];
@@ -61,7 +62,7 @@ export class AddProductComponent implements OnInit {
       name: ["", Validators.required],
       category: ["", Validators.required],
       description: ["", Validators.required],
-      image: ["", Validators.pattern(/(https|http)/g)],
+      image: [null, Validators.pattern(/(https|http)/g)],
       price: ["", [Validators.required, Validators.min(1), FormValidators.removeNaN]],
       qty: ["", [Validators.required, Validators.min(1), FormValidators.removeNaN]],
       discount: ["", [Validators.max(100), FormValidators.removeNaN]]

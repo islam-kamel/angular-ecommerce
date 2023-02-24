@@ -8,7 +8,6 @@ const appRoutes: Routes = [
     loadChildren: () => import('@modules/products/products.module').then(m => m.ProductsModule),
     canActivate: [AuthorizationGuard]
   },
-  // {path: "add-product", component: AddProductComponent}
 ]
 
 @NgModule({
