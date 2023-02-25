@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
+import {NavigationStart, Router} from "@angular/router";
 import {LoginComponent} from "@components/login/login.component";
+import {AuthService} from "@core/services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,18 +11,29 @@ import {LoginComponent} from "@components/login/login.component";
 export class NavbarComponent implements OnInit {
   @ViewChild('container', {read: ViewContainerRef, static: true}) container!: ViewContainerRef;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth: AuthService) {
+  }
+
+  get fullName(): string {
+    return this.auth.session?.data['fullName'] as string
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 
   ngOnInit(): void {
+    if (this.auth.session || !this.container) { return; }
+
     this.router.events.subscribe((value) => {
       if (value instanceof NavigationStart) {
         if (value.url.match('login')) {
-          return this.container.clear()
+          return this.container.clear();
         }
         this.container.createComponent(LoginComponent);
       }
     })
   }
+
 }
 

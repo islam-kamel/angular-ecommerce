@@ -13,8 +13,8 @@ export class InputComponent {
   @Input() className!:any;
   @Input() label:string = "";
   @Input() styleBody:string =  "";
-
   @Input() placeHolder: string = "";
+  @Input() type: string = "text";
 
   get control(): FormControl { return this.form.controls[this.controlName] as FormControl; }
 }

@@ -28,7 +28,7 @@ export class LoginComponent {
     return this.fb.group({
       email: ["", [Validators.email, Validators.required]],
       password: ["", [Validators.required]]
-    }, {updateOn: "blur"});
+    });
   }
 
 }

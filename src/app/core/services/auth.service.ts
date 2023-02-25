@@ -11,6 +11,10 @@ export class AuthService {
     this._sessionKey = "session";
   }
 
+  logout() {
+    localStorage.removeItem(this._sessionKey);
+    this.router.navigate(['login']).then();
+  }
   get session(): Session | undefined {
     let row = localStorage.getItem(this._sessionKey);
     let session = undefined;
@@ -56,5 +60,6 @@ export class AuthService {
 
     return session;
   }
+
 
 }

@@ -35,12 +35,15 @@
           </form>
         </div>
         <div class="col-12 col-md-5">
-          <form class="d-flex " role="search">
-            <app-singup></app-singup>
-<!--              <app-login (click)="route()"  [hidden]="loginRe.isActive" routerLink="login" #loginRe="routerLinkActive" routerLinkActive=""></app-login>-->
-<!--              {{loginRe.isActiveChange}}-->
-            <ng-template #container></ng-template>
-          </form>
+          <div class="d-flex align-items-center  h-100">
+            <ng-template *ngIf="fullName" #container></ng-template>
+
+            <ng-container *ngIf="fullName">
+              <p class="my-auto fs-6 fw-bold">{{fullName}}</p>
+              <button (click)="logout()" class="ms-2 btn btn-sm btn-danger">Logout</button>
+            </ng-container>
+
+          </div>
         </div>
       </div>
     </div>
