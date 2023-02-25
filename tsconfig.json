@@ -7,7 +7,7 @@
       "@environments/*": ["./src/environments/*"],
       "@reusable/*": ["./src/app/Reusable/*"],
       "@core/*": ["./src/app/core/*"],
-      "@components/*": ["./src/app/Components/*"],
+      "@components/*": ["./src/app/Components/*", "./src/app/modules/products/Components/*"],
       "@modules/*": ["./src/app/modules/*"]
     },
     "outDir": "./dist/out-tsc",

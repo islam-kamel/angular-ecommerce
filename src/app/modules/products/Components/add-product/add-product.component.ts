@@ -24,14 +24,6 @@ export class AddProductComponent implements OnInit {
     return this.productForm.controls["name"] as FormControl;
   }
 
-  get category(): FormControl {
-    return this.productForm.controls["category"] as FormControl;
-  }
-
-  get description(): FormControl {
-    return this.productForm.controls["description"] as FormControl;
-  }
-
   get image(): FormControl {
     return this.productForm.controls["image"] as FormControl;
   }
@@ -79,7 +71,7 @@ export class AddProductComponent implements OnInit {
 
     if (data["discount"]) data["discount"] /= 100;
 
-    this.pService.post(data).subscribe(value => console.log("Handel Me Add Product"));
+    this.pService.post(data).subscribe(value => console.log(value, "Handel Me Add Product"));
   }
 
 }

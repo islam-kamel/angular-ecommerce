@@ -1,5 +1,5 @@
 <ng-container [formGroup]="form">
-  <div>
+  <div [class]="styleBody">
     <label class="form-label" [for]="controlName">{{label}}</label>
     <input
       [class.is-invalid] = "control.invalid && control.dirty && control.touched"
@@ -7,9 +7,11 @@
       [formControlName]="controlName"
       [id]="controlName"
       type="text"
+      [placeholder]="placeHolder"
     >
+    <ng-content select=".extra"></ng-content>
     <div class="invalid-feedback" *ngIf="control.invalid && control.dirty && control.touched">
-      <ng-content select=".error"></ng-content>
+      <ng-content select=".error-input"></ng-content>
     </div>
   </div>
 </ng-container>

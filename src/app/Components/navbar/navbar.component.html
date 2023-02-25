@@ -37,7 +37,9 @@
         <div class="col-12 col-md-5">
           <form class="d-flex " role="search">
             <app-singup></app-singup>
-            <app-login></app-login>
+<!--              <app-login (click)="route()"  [hidden]="loginRe.isActive" routerLink="login" #loginRe="routerLinkActive" routerLinkActive=""></app-login>-->
+<!--              {{loginRe.isActiveChange}}-->
+            <ng-template #container></ng-template>
           </form>
         </div>
       </div>

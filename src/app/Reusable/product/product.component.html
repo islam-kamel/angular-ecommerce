@@ -1,7 +1,9 @@
 <div class="card shadow-sm">
   <img [src]="image" class="bd-placeholder-img card-img-top">
   <div class="card-body">
-    <h5 class="card-title fw-bold fs-5 mb-2">{{title}}</h5>
+    <a class="text-dark text-decoration-none" [routerLink]="link">
+      <h5 class="card-title fw-bold fs-5 mb-2">{{title}}</h5>
+    </a>
     <span class="text-muted border-bottom pb-1 mb-2 d-block">{{category}}</span>
     <p class="card-text">{{description}}</p>
     <div class="bg-light rounded px-1 py-3 mb-3">

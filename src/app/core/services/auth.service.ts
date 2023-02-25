@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from "./api.service";
 import {Session, User} from "../types";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
   _sessionKey: string;
 
-  constructor(private client: ApiService) {
+  constructor(private client: ApiService, private router: Router) {
     this._sessionKey = "session";
   }
 
@@ -35,6 +36,7 @@ export class AuthService {
       next: (value) => data = value[0],
       complete: () => {
         data ? this.createSession(data) : null;
+        this.router.navigate([""]).then();
       }
     });
   }

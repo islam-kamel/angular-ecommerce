@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
-import {AuthService} from "../../core/services/auth.service";
+import {Component, Input, TemplateRef} from '@angular/core';
+import {AuthService} from "@core/services/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class LoginComponent {
   loginForm: FormGroup;
-
+  @Input() show: string = "model"
   constructor(private auth: AuthService, private fb: FormBuilder) {
     this.loginForm = this.initForm();
   }

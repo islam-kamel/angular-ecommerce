@@ -13,6 +13,7 @@ export class ProductComponent implements AfterContentInit {
   @Input() category!: string;
   @Input() description!: string;
   @Input() handelCart!: Function;
+  @Input() link!: string;
 
   ngAfterContentInit() {
     !this.image ? this.image = "https://epay.slcc.edu/C20011_ustores/web/images/product-default-image.png" : null

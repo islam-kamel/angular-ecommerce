@@ -1,51 +1,93 @@
-<button class="btn btn-primary mx-3" data-bs-target="#loginBackdrop" data-bs-toggle="modal" type="button">Login</button>
+<a hidden routerLink="/login" #loginRe="routerLinkActive" routerLinkActive=""></a>
 
-<ng-container>
-  <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-       id="loginBackdrop" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5 text-primary" id="staticBackdropLabel">Login</h1>
-          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-        </div>
-        <div class="modal-body">
-          <ng-container *ngTemplateOutlet="form"></ng-container>
+<ng-template #login_model >
+  <button class="btn btn-primary mx-3" data-bs-target="#loginBackdrop" data-bs-toggle="modal" type="button">Login
+  </button>
+
+  <ng-container>
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static"
+         data-bs-keyboard="false"
+         id="loginBackdrop" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-primary" id="staticBackdropLabel">Login</h1>
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+          </div>
+          <div class="modal-body">
+            <ng-container *ngTemplateOutlet="form"></ng-container>
+          </div>
         </div>
       </div>
     </div>
+  </ng-container>
+</ng-template>
+<ng-template #error_template>
+  <div *ngIf="email.hasError('email') && email.dirty"
+       [class.error-active]="email.invalid"
+       class="form-text alert alert-danger error error-message"
+  >
+    Type Correct Email 👎
   </div>
-</ng-container>
-
+  <div *ngIf="password.hasError('required') && password.touched && email.valid && password.dirty"
+       [class.error-active]="password.invalid"
+       class="form-text alert alert-danger error error-message"
+  >
+    are you kidding! 😖
+  </div>
+</ng-template>
 <ng-template #form>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <ng-container >
-      <div [class.error-active] = "email.invalid"
-           *ngIf="email.hasError('email') && email.dirty"
-           class="form-text alert alert-danger error error-message"
-      >
-        Type Correct Email 👎
-      </div>
-      <div [class.error-active] = "password.invalid"
-           *ngIf="password.hasError('required') && password.touched && email.valid && password.dirty"
-           class="form-text alert alert-danger error error-message"
-      >
-        are you kidding! 😖
-      </div>
-    </ng-container>
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
+    <ng-container *ngTemplateOutlet="error_template"></ng-container>
     <div class="mb-3">
       <label class="form-label" for="email">Email address</label>
-      <input aria-describedby="emailHelp" class="form-control" formControlName="email" id="email" placeholder="Type Email"
+      <input aria-describedby="emailHelp" class="form-control" formControlName="email" id="email"
+             placeholder="Type Email"
              type="email">
       <div class="form-text" id="emailHelp">We'll never share your email with anyone else.</div>
     </div>
     <div class="mb-3">
       <label class="form-label" for="password">Password</label>
-      <input formControlName="password" class="form-control" id="password" placeholder="Type Password" type="password">
+      <input class="form-control" formControlName="password" id="password" placeholder="Type Password"
+             type="password">
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
       <button class="btn btn-primary" type="submit">Login</button>
     </div>
   </form>
+</ng-template>
+
+<ng-container *ngIf="!loginRe.isActive then login_model else other" ></ng-container>
+<ng-template #other>
+  <main class="container text-center h-75" >
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="rounded-4 bg-light p-5 border">
+        <h1 class="fw-bold border-bottom mb-3 p-2">Sign in</h1>
+        <form [formGroup]="loginForm" class="text-start" (ngSubmit)="login()">
+          <ng-container *ngTemplateOutlet="error_template"></ng-container>
+          <app-input
+            label="Email"
+            [form]="loginForm"
+            className="form-control"
+            controlName="email"
+            placeHolder="Email"
+          >
+            <div class="form-text extra">We'll never share your email with anyone else.</div>
+          </app-input>
+
+          <app-input
+            label="password"
+            [form]="loginForm"
+            className="form-control"
+            controlName="password"
+            styleBody="my-3"
+            placeHolder="Password"
+          >
+          </app-input>
+          <button class="btn btn-primary w-100 d-block btn-lg">Login</button>
+        </form>
+      </div>
+    </div>
+  </main>
 </ng-template>
