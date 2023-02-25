@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {AuthService} from "@core/services/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private auth: AuthService, private fb: FormBuilder) {
+  constructor(private auth: AuthService, private fb: FormBuilder, private router: Router) {
     this.loginForm = this.initForm();
   }
 

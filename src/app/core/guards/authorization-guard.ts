@@ -6,12 +6,11 @@ import {AuthService} from "@core/services/auth.service";
   providedIn: "root",
 })
 export class AuthorizationGuard implements CanActivate {
-  static isLogin: any;
   constructor(private _auth: AuthService, private router: Router) {
   }
 
   canActivate(): boolean {
-    if(!this._auth.session) {
+    if (!this._auth.session) {
       this.router.navigate(['login']).then();
     }
     return !!this._auth.session;

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthorizationGuard} from "@core/guards/authorization-guard";
 import {LoginComponent} from "@components/login/login.component";
-import {AuthService} from "@core/services/auth.service";
+import {CanAccessLoginGuard} from "@core/guards/can-access-login.guard";
 
 const appRoutes: Routes = [
   {path: "", redirectTo: "/products", pathMatch: "full"},
@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   {
     path: "login",
     component: LoginComponent,
-    canActivate: [(): boolean => !AuthService.fastCheck]
+    canActivate: [CanAccessLoginGuard]
   }
 ]
 

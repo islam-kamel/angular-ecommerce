@@ -15,7 +15,8 @@ export class AuthService {
     return !!localStorage.getItem("session");
   }
   reloadPage(location?: any) {
-    window.location.replace(location || "")
+    this.router.navigateByUrl(location || "/products")
+    // window.location.replace(location || "")
   }
   logout() {
     localStorage.removeItem(this._sessionKey);
@@ -46,7 +47,7 @@ export class AuthService {
       next: (value) => data = value[0],
       complete: () => {
         data ? this.createSession(data) : null;
-        this.reloadPage();
+        this.reloadPage("products");
       }
     });
   }

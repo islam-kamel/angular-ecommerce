@@ -1,18 +1,18 @@
 import {Component} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {FormValidators} from "../../core/services/form-validatetors.validator";
-import {ApiService} from "../../core/services/api.service";
-import {RegisterUser} from "../../core/types";
+import {FormValidators} from "@core/services/form-validatetors.validator";
+import {ApiService} from "@core/services/api.service";
+import {AuthService} from "@core/services/auth.service";
 
 @Component({
-  selector: 'app-singup',
-  templateUrl: './singup.component.html',
-  styleUrls: ['./singup.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
   signup: FormGroup;
 
-  constructor(private fb:FormBuilder, private formValidators:FormValidators, private api:ApiService) {
+  constructor(private fb: FormBuilder, private formValidators: FormValidators, private api: ApiService) {
     this.signup = this.createFormItem();
 
     this.phones.valueChanges.subscribe((value: string[]) => {
@@ -22,6 +22,9 @@ export class SignupComponent {
     });
   }
 
+  get fastCheckLogin() {
+    return AuthService.fastCheck;
+  }
   get phones(): FormArray {
     return this.signup.controls["phones"] as FormArray;
   }
@@ -45,7 +48,7 @@ export class SignupComponent {
   onSubmit() {
     let data = structuredClone(this.signup.getRawValue());
     delete data['confirm'];
-    this.signup.valid? this.api.post('users', JSON.stringify(data)).subscribe(e => console.log(e)): null
+    this.signup.valid ? this.api.post('users', JSON.stringify(data)).subscribe(e => console.log(e)) : null
   }
 
   createFormItem(): FormGroup {
@@ -73,9 +76,10 @@ export class SignupComponent {
       ),
       password: ["", {validators: [Validators.required]}],
       confirm: ["", Validators.required],
-    }, {validators:  this.formValidators.passwordMatch("password", "confirm")});
+    }, {validators: this.formValidators.passwordMatch("password", "confirm")});
 
     return form;
   }
 
 }
+
