@@ -11,9 +11,15 @@ export class AuthService {
     this._sessionKey = "session";
   }
 
+  static get fastCheck(): boolean {
+    return !!localStorage.getItem("session");
+  }
+  reloadPage(location?: any) {
+    window.location.replace(location || "")
+  }
   logout() {
     localStorage.removeItem(this._sessionKey);
-    this.router.navigate(['login']).then();
+    this.reloadPage("/login")
   }
   get session(): Session | undefined {
     let row = localStorage.getItem(this._sessionKey);
@@ -40,7 +46,7 @@ export class AuthService {
       next: (value) => data = value[0],
       complete: () => {
         data ? this.createSession(data) : null;
-        this.router.navigate([""]).then();
+        this.reloadPage();
       }
     });
   }

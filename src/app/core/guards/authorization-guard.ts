@@ -6,7 +6,7 @@ import {AuthService} from "@core/services/auth.service";
   providedIn: "root",
 })
 export class AuthorizationGuard implements CanActivate {
-
+  static isLogin: any;
   constructor(private _auth: AuthService, private router: Router) {
   }
 

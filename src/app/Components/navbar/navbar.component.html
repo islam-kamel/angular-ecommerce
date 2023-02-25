@@ -36,8 +36,8 @@
         </div>
         <div class="col-12 col-md-5">
           <div class="d-flex align-items-center  h-100">
-            <ng-template *ngIf="fullName" #container></ng-template>
-
+            <ng-template #signUp></ng-template>
+            <ng-template #login></ng-template>
             <ng-container *ngIf="fullName">
               <p class="my-auto fs-6 fw-bold">{{fullName}}</p>
               <button class="ms-2" (click)="logout()" mat-flat-button color="warn">Logout</button>

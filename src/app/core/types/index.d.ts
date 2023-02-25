@@ -37,3 +37,6 @@ export interface IProduct {
   [key: string]: any; // Recommend to use key for id;
 }
 
+export interface ValidatorIsAuth {
+  (value: string): boolean;
+}
