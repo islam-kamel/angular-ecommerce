@@ -40,9 +40,8 @@
 
             <ng-container *ngIf="fullName">
               <p class="my-auto fs-6 fw-bold">{{fullName}}</p>
-              <button (click)="logout()" class="ms-2 btn btn-sm btn-danger">Logout</button>
+              <button class="ms-2" (click)="logout()" mat-flat-button color="warn">Logout</button>
             </ng-container>
-
           </div>
         </div>
       </div>

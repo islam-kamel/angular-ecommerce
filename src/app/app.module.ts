@@ -8,6 +8,7 @@ import {LoginComponent} from "@components/login/login.component";
 import {SignupComponent} from "@components/signup/signup.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     ReactiveFormsModule,
     CoreModule.forRoot(),
+    MatButtonModule,
   ],
   providers: [AppRoutingModule],
   bootstrap: [AppComponent]

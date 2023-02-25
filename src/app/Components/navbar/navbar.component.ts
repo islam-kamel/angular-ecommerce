@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {NavigationStart, Router} from "@angular/router";
 import {LoginComponent} from "@components/login/login.component";
 import {AuthService} from "@core/services/auth.service";
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-navbar',

@@ -11,7 +11,7 @@ import {CommonModule} from "@angular/common";
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [InputComponent],
   exports: [InputComponent]
