@@ -9,6 +9,7 @@ import {SignupComponent} from "@components/signup/signup.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {MatButtonModule} from '@angular/material/button';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
