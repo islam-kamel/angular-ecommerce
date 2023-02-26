@@ -52,9 +52,12 @@ export class EditProductComponent implements AfterContentInit {
     this.pServices.update(this.productId, data).subscribe(e => {
       this.router.navigateByUrl("/", {skipLocationChange: true}).then(() => {
         this.router.navigate([this.router.url, this.activeRouter.snapshot.paramMap.get("id")]).then(() => {
+          try {
             document.body.removeAttribute("style")
             document.body.classList.remove("model-open")
-            document.body.removeChild(document.querySelector(".show")!)
+            document.body.removeChild(document.querySelector(".modal-backdrop.fade.show") as Node)
+          } catch (e){}
+
         })
       })
     })
