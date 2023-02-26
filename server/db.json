@@ -1,42 +1,34 @@
 {
   "products": [
     {
-      "id": 1,
       "name": "Iphone",
+      "category": 1,
       "description": "This is a wider card with supporting text below as a natural lead-in to additional\ncontent. This content is a little bit longer.",
-      "category": {
-        "id": 1,
-        "name": "Mobile"
-      },
       "image": "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "qty": 3,
       "price": 3200,
-      "discount": 0.15
+      "qty": 3,
+      "discount": 0.15,
+      "id": 1
     },
     {
       "id": 2,
       "name": "TV",
       "description": "This is a wider card with supporting text below as a natural lead-in to additional\ncontent. This content is a little bit longer.",
-      "category": {
-        "id": 2,
-        "name": "TV"
-      },
+      "category": 2,
       "image": "https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "qty": 8,
       "price": 24991,
       "discount": 0.1
     },
     {
-      "id": 3,
       "name": "LapTop",
+      "category": 3,
       "description": "This is a wider card with supporting text below as a natural lead-in to additional\ncontent. This content is a little bit longer.",
-      "category": {
-        "id": 3,
-        "name": "LapTop"
-      },
       "image": "https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 23321,
       "qty": 1,
-      "price": 23321
+      "discount": 0,
+      "id": 3
     },
     {
       "name": "Islam Kamel",
@@ -54,8 +46,28 @@
       "image": "https://avatars.githubusercontent.com/u/61625045?v=4",
       "price": 2023,
       "qty": 123,
-      "discount": 0.5,
+      "discount": 0.05,
       "id": 5
+    },
+    {
+      "name": "TV",
+      "category": 2,
+      "description": "This is a wider card with supporting text below as a natural lead-in to additional\ncontent. This content is a little bit longer.",
+      "image": "https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 24991,
+      "qty": 8,
+      "discount": 0.01,
+      "id": 6
+    },
+    {
+      "name": "TV",
+      "category": "2",
+      "description": "This is a wider card with supporting text below as a natural lead-in to additional\ncontent. This content is a little bit longer.",
+      "image": "https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 24991,
+      "qty": 8,
+      "discount": 0.1,
+      "id": 7
     }
   ],
   "categories": [

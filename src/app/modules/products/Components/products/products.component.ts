@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ApiService} from "@core/services/api.service";
 import {IProduct} from "@core/types";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ProductService} from "@core/services/product.service";
 
 @Component({
   selector: 'app-products',
@@ -14,8 +15,8 @@ export class ProductsComponent {
 
   form: FormGroup;
 
-  constructor(private api: ApiService, private fb: FormBuilder) {
-    this.api.get<IProduct[]>('products').subscribe(value => {
+  constructor(private pServices: ProductService, private fb: FormBuilder) {
+    this.pServices.getAll().subscribe(value => {
       this.products = value;
     })
 

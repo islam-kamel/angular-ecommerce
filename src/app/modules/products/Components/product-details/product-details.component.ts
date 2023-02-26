@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "@core/services/product.service";
 import {IProduct} from "@core/types";
-import {map} from "rxjs";
-import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-product-details',
@@ -11,11 +9,11 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  product: IProduct;
+  product!: IProduct;
   qty: number;
+
   constructor(private activeLink: ActivatedRoute, private pService: ProductService) {
     this.qty = 0;
-    this.product = {} as IProduct;
   }
 
   ngOnInit(): void {
@@ -33,11 +31,12 @@ export class ProductDetailsComponent implements OnInit {
 
   increment() {
     let newValue = this.qty + 1;
-    if(newValue <= this.product.qty) ++this.qty;
+    if (newValue <= this.product.qty) ++this.qty;
   }
 
   decrement() {
     let newValue = this.qty - 1;
     if (newValue >= 0) --this.qty;
   }
+
 }

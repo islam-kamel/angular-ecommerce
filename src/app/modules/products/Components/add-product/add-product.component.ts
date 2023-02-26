@@ -17,8 +17,11 @@ export class AddProductComponent implements OnInit {
   defaultImage: string = "https://shopnguyenlieumypham.com/wp-content/uploads/no-image/product-456x456.jpg";
 
   constructor(private fb: FormBuilder, private api: ApiService, private pService: ProductService) {
+
     this.categories = [];
-    this.productForm = this.initForm();
+    // this.productForm = this.initForm();
+    this.productForm = this.outerForm? this.outerForm : this.initForm()
+    // this.outerForm ? this.productForm =  this.outerForm : null;
   }
 
   get name(): FormControl {
@@ -42,13 +45,13 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.outerForm ? this.productForm =  this.outerForm : null;
 
     this.api.get<{ name: string, id: number }[]>("categories").subscribe(value => {
 
       this.categories = value;
 
     });
+    this.outerForm ? this.productForm =  this.outerForm : null;
   }
 
   initForm(): FormGroup {
@@ -66,6 +69,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if(this.outerForm) return;
     let data = structuredClone(this.productForm.getRawValue());
 
     for (let key in data) {

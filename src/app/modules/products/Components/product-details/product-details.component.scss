@@ -9,3 +9,18 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.edit:hover {
+  &::after {
+    content: "\270F \FE0F";
+    margin-left: 10px;
+    font-size: 15px;
+    position: absolute;
+  }
+
+  color: #dc3545;
+}
+.edit{
+  cursor: pointer;
+  transition: all ease-in .08s;
+}

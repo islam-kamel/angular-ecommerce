@@ -1,7 +1,7 @@
 <app-edit-product></app-edit-product>
+<ng-container *ngIf="product">
 <div class="container my-5">
   <div class="row">
-
     <div class="col-md-4">
       <div class="card">
         <img [src]="product.image" alt="..." class="card-image rounded">
@@ -11,9 +11,9 @@
     <div class="col-md-8">
       <div class="d-flex align-items-start justify-content-center flex-column">
         <div class="d-block d-md-none mt-3"></div>
-        <h1 class="p-0 m-0" style="width: fit-content;">{{product.name}}</h1>
+        <h1 class="p-0 m-0 edit" style="width: fit-content;" data-bs-target="#editProductBackdrop" data-bs-toggle="modal">{{product.name}}</h1>
 
-        <span class="pt-1 mt-1">Category: {{product.category}}</span>
+        <span class="pt-1 mt-1 text-muted">Category: {{product.category.name}}</span>
 
         <small
           [ngClass]="{'text-danger': product.qty < 2, 'text-muted': product.qty >= 2}"
@@ -50,6 +50,7 @@
   </div>
 
 </div>
+</ng-container>
 <ng-template #priceWithDiscount>
   <div class="d-flex align-items-center">
     <p class="fs-6 m-0 text-muted text-decoration-line-through">

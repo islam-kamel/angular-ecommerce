@@ -24,10 +24,16 @@ export interface Category {
   name: string
 }
 
+export interface ICategory {
+  id: number,
+  name: string
+}
+
 export interface IProduct {
   name: string;
   description: string;
-  category: { id: number, name: string };
+  // category: { id: number, name: string };
+  category: ICategory;
   qty: number,
   price: number,
   image?: string;

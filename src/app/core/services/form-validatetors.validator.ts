@@ -12,8 +12,8 @@ export class FormValidators {
 
   static removeNaN(control: AbstractControl) {
     let pattern = /[aA-zA|\W+]/g
-    if (control.value.match(pattern)) {
-      control.setValue(control.value.replaceAll(pattern, ""), {emitEvent: false})
+    if (control.value.toString().match(pattern)) {
+      control.setValue(control.value.toString().replaceAll(pattern, ""), {emitEvent: false})
     }
   }
 

@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-12 mb-5 border-bottom py-2">
+    <div class="col-12 mb-5 border-bottom py-2" *ngIf="!outerForm">
       <div class="alert alert-primary">
         <h1 class="text-center fw-bold m-0 p-0">Add Awesome Product 🎊</h1>
       </div>
@@ -85,7 +85,11 @@
           </select>
         </div>
         <div class="col-12">
-          <button [disabled]="productForm.invalid" class="d-block btn btn-primary w-25" type="submit">Add</button>
+          <button [disabled]="productForm.invalid" class="d-block btn btn-primary w-25" type="submit">
+            <ng-container *ngIf="outerForm then update else add"></ng-container>
+            <ng-template #update>Update</ng-template>
+            <ng-template #add>Update</ng-template>
+          </button>
         </div>
       </form>
     </div>
