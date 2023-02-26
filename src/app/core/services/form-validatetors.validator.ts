@@ -1,4 +1,4 @@
-import {AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
+import {AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors} from "@angular/forms";
 import {catchError, delay, map, Observable} from "rxjs";
 import {User} from "../types";
 import {Injectable} from "@angular/core";
@@ -12,10 +12,11 @@ export class FormValidators {
 
   static removeNaN(control: AbstractControl) {
     let pattern = /[aA-zA|\W+]/g
-    if(control.value.match(pattern)) {
+    if (control.value.match(pattern)) {
       control.setValue(control.value.replaceAll(pattern, ""), {emitEvent: false})
     }
   }
+
   passwordMatch(control1: string, control2: string) {
     return (form: FormGroup) => {
       let password = form.controls[control1];
@@ -40,7 +41,7 @@ export class FormValidators {
           }
         ),
         catchError(() => {
-          return new Observable<ValidationErrors|null>(subscriber => {
+          return new Observable<ValidationErrors | null>(subscriber => {
             subscriber.next({serverError: true})
             subscriber.complete()
           })

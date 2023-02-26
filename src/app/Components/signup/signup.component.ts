@@ -25,6 +25,7 @@ export class SignupComponent {
   get fastCheckLogin() {
     return AuthService.fastCheck;
   }
+
   get phones(): FormArray {
     return this.signup.controls["phones"] as FormArray;
   }

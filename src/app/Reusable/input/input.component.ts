@@ -8,13 +8,15 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent {
-  @Input() controlName:string = "";
-  @Input() form!:FormGroup;
-  @Input() className!:any;
-  @Input() label:string = "";
-  @Input() styleBody:string =  "";
+  @Input() controlName: string = "";
+  @Input() form!: FormGroup;
+  @Input() className!: any;
+  @Input() label: string = "";
+  @Input() styleBody: string = "";
   @Input() placeHolder: string = "";
   @Input() type: string = "text";
 
-  get control(): FormControl { return this.form.controls[this.controlName] as FormControl; }
+  get control(): FormControl {
+    return this.form.controls[this.controlName] as FormControl;
+  }
 }

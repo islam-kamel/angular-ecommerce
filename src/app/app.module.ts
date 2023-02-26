@@ -9,7 +9,7 @@ import {SignupComponent} from "@components/signup/signup.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {MatButtonModule} from '@angular/material/button';
-import { NotFoundComponent } from './Components/not-found/not-found.component';
+import {NotFoundComponent} from '@components/not-found/not-found.component';
 
 @NgModule({
   declarations: [

@@ -2,7 +2,7 @@
   <div [class]="styleBody">
     <label class="form-label" [for]="controlName">{{label}}</label>
     <input
-      [class.is-invalid] = "control.invalid && control.dirty && control.touched"
+      [class.is-invalid]="control.invalid && control.dirty && control.touched"
       [class]="className"
       [formControlName]="controlName"
       [id]="controlName"

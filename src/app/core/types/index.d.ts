@@ -1,5 +1,3 @@
-import {AbstractControl, FormControl, FormGroup, ValidationErrors} from "@angular/forms";
-
 export interface User {
   username: string,
   email: string,
@@ -18,7 +16,7 @@ export interface RegisterUser extends User {
 }
 
 export interface Session {
-  data: {[key: string]: any};
+  data: { [key: string]: any };
   token: string;
 }
 
@@ -29,7 +27,7 @@ export interface Category {
 export interface IProduct {
   name: string;
   description: string;
-  category: {id: number, name: string};
+  category: { id: number, name: string };
   qty: number,
   price: number,
   image?: string;

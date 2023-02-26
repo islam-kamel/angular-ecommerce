@@ -1,6 +1,6 @@
 <a hidden routerLink="/login" #loginRe="routerLinkActive" routerLinkActive=""></a>
 
-<ng-template #login_model >
+<ng-template #login_model>
   <button class="btn btn-primary mx-3" data-bs-target="#loginBackdrop" data-bs-toggle="modal" type="button">Login
   </button>
 
@@ -58,9 +58,9 @@
   </form>
 </ng-template>
 
-<ng-container *ngIf="!loginRe.isActive then login_model else other" ></ng-container>
+<ng-container *ngIf="!loginRe.isActive then login_model else other"></ng-container>
 <ng-template #other>
-  <main class="container text-center h-75" >
+  <main class="container text-center h-75">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="rounded-4 bg-light p-5 border">
         <h1 class="fw-bold border-bottom mb-3 p-2">Sign in</h1>

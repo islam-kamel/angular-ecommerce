@@ -14,14 +14,17 @@ export class AuthService {
   static get fastCheck(): boolean {
     return !!localStorage.getItem("session");
   }
+
   reloadPage(location?: any) {
     this.router.navigateByUrl(location || "/products")
     // window.location.replace(location || "")
   }
+
   logout() {
     localStorage.removeItem(this._sessionKey);
     this.reloadPage("/login")
   }
+
   get session(): Session | undefined {
     let row = localStorage.getItem(this._sessionKey);
     let session = undefined;

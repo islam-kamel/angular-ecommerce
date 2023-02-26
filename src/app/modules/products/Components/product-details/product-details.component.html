@@ -1,22 +1,73 @@
-<p>product-details works!</p>
-{{product | json}}
-<div class="container">
+<div class="container my-5">
   <div class="row">
-    <div class="col-md-6">
+
+    <div class="col-md-4">
       <div class="card">
-        <img [src]="product.image" class="card-image rounded" alt="...">
+        <img [src]="product.image" alt="..." class="card-image rounded">
       </div>
     </div>
-    <div class="col-md-6">
+
+    <div class="col-md-8">
       <div class="d-flex align-items-start justify-content-center flex-column">
-        <h1 class="p-0 m-0">{{product.name}}</h1>
-        <span class="border-top pt-2 mt-2">Category: {{product.category.name}}</span>
+        <div class="d-block d-md-none mt-3"></div>
+        <h1 class="p-0 m-0" style="width: fit-content;">{{product.name}}</h1>
+
+        <span class="pt-1 mt-1">Category: {{product.category}}</span>
+
+        <small
+          [ngClass]="{'text-danger': product.qty < 2, 'text-muted': product.qty >= 2}"
+        >
+          QTY: {{product.qty}}
+        </small>
+
       </div>
-      <div class="d-flex flex-column mt-3 justify-content-evenly h-100 w-50 fs-4 lh-1">
-        <p class="">{{product.description}}</p>
-        <p>s</p>
+
+      <div class="bg-light p-3 rounded my-3 border">
+        <p class="fs-6 lh-1 " style="width: fit-content">{{product.description}}</p>
       </div>
+
+      <div class="d-flex justify-content-between">
+        <ng-container *ngTemplateOutlet="product['discount']? priceWithDiscount: priceOnly"></ng-container>
+        <div class="d-flex w-100 justify-content-end align-items-center">
+          <ng-container *ngIf="product['discount'] then priceLiveWithDiscount else priceOnlyLive"></ng-container>
+          <div class="input-group my-3 w-25 ">
+            <button (click)="increment()" class="btn btn-outline-secondary btn-sm d-block w-25" type="button">+</button>
+            <input [(ngModel)]="qty" [max]="product.qty" aria-label="Example text with two button addons"
+                   class="form-control text-center" min="0"
+                   placeholder="" readonly type="number"
+                   value="12">
+            <button (click)="decrement()" class="btn btn-outline-secondary btn-sm d-block w-25" type="button">-</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3">
+        <button class="btn btn-warning d-block w-25">Buy</button>
+      </div>
+
     </div>
   </div>
 
 </div>
+<ng-template #priceWithDiscount>
+  <div class="d-flex align-items-center">
+    <p class="fs-6 m-0 text-muted text-decoration-line-through">
+      Price:{{product.price | currency}}
+    </p>
+    <span class="fs-6 text-success mx-3">{{calcDiscount(product.price, product["discount"]) | currency}}</span>
+    <span class="badge text-bg-danger p-2">{{product["discount"] | percent}}</span>
+  </div>
+</ng-template>
+
+<ng-template #priceOnly>
+  <p class="fs-6 m-0 fw-500">
+    Price: <span class="text-success">{{product.price | currency}}</span>
+  </p>
+</ng-template>
+
+<ng-template #priceLiveWithDiscount>
+  <span class="me-3  text-muted">{{calcDiscount(product.price, +product["discount"]) * qty | currency}}</span>
+</ng-template>
+<ng-template #priceOnlyLive>
+  <span class="me-3  text-muted">{{product.price * qty | currency}}</span>
+</ng-template>
