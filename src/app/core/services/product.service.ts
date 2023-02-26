@@ -13,8 +13,12 @@ export class ProductService {
     return this.api.post<IProduct>("products", JSON.stringify(data));
   }
 
-  get(id: string | null): Observable<IProduct> {
-    return this.api.get<IProduct>(`products/${id}`);
+  getAll(): Observable<IProduct[]> {
+    return this.api.get<IProduct[]>(`products`);
+  }
+
+  getById(id: number | string): Observable<IProduct> {
+    return this.api.get(`products/${id}`);
   }
 
 }

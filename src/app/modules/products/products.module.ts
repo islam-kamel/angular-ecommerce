@@ -8,10 +8,17 @@ import {ProductsComponent} from "@components/products/products.component";
 import {AddProductComponent} from "@components/add-product/add-product.component";
 import {ProductDetailsComponent} from '@components/product-details/product-details.component';
 import {CoreModule} from "@core/core.module";
+import {EditProductComponent} from "@modules/products/Components/edit-product/edit-product.component";
 
 
 @NgModule({
-  declarations: [ProductsComponent, AddProductComponent, ProductComponent, ProductDetailsComponent],
+  declarations: [
+    ProductsComponent,
+    AddProductComponent,
+    ProductComponent,
+    ProductDetailsComponent,
+    EditProductComponent,
+  ],
   imports: [
     CommonModule,
     ProductsRoutingModule,

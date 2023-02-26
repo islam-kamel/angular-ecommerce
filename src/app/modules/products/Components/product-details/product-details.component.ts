@@ -21,7 +21,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     let id = this.activeLink.snapshot.paramMap.get("id");
 
-    this.pService.get(id).subscribe(value => {
+    this.pService.getById(id as string).subscribe(value => {
       this.product = value;
     });
 

@@ -1,0 +1,7 @@
+<p>edit-product works!</p>
+<form [formGroup]="productForm">
+  <app-add-product
+    [outerForm]="productForm"
+  ></app-add-product>
+</form>
+{{productForm.value | json}}

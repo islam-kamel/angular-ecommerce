@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "@core/services/api.service";
 import {ProductService} from "@core/services/product.service";
@@ -11,6 +11,7 @@ import {FormValidators} from "@core/services/form-validatetors.validator";
 })
 export class AddProductComponent implements OnInit {
 
+  @Input() outerForm!: FormGroup;
   productForm: FormGroup;
   categories: { name: string, id: number }[];
   defaultImage: string = "https://shopnguyenlieumypham.com/wp-content/uploads/no-image/product-456x456.jpg";
@@ -41,6 +42,8 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.outerForm ? this.productForm =  this.outerForm : null;
+
     this.api.get<{ name: string, id: number }[]>("categories").subscribe(value => {
 
       this.categories = value;
