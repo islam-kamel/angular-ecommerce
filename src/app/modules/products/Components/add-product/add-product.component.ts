@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "@core/services/api.service";
 import {ProductService} from "@core/services/product.service";
 import {FormValidators} from "@core/services/form-validatetors.validator";
+import {ICategory} from "@core/types";
 
 @Component({
   selector: 'app-add-product',
@@ -13,15 +14,14 @@ export class AddProductComponent implements OnInit {
 
   @Input() outerForm!: FormGroup;
   productForm: FormGroup;
-  categories: { name: string, id: number }[];
+  categories: ICategory[];
   defaultImage: string = "https://shopnguyenlieumypham.com/wp-content/uploads/no-image/product-456x456.jpg";
 
   constructor(private fb: FormBuilder, private api: ApiService, private pService: ProductService) {
-
     this.categories = [];
-    // this.productForm = this.initForm();
-    this.productForm = this.outerForm? this.outerForm : this.initForm()
-    // this.outerForm ? this.productForm =  this.outerForm : null;
+
+    this.productForm = this.outerForm ? this.outerForm : this.initForm()
+
   }
 
   get name(): FormControl {
@@ -51,7 +51,7 @@ export class AddProductComponent implements OnInit {
       this.categories = value;
 
     });
-    this.outerForm ? this.productForm =  this.outerForm : null;
+    this.outerForm ? this.productForm = this.outerForm : null;
   }
 
   initForm(): FormGroup {
@@ -69,7 +69,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.outerForm) return;
+    if (this.outerForm) return;
     let data = structuredClone(this.productForm.getRawValue());
 
     for (let key in data) {

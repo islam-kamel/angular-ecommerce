@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {ApiService} from "@core/services/api.service";
 import {IProduct} from "@core/types";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "@core/services/product.service";

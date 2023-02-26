@@ -32,7 +32,6 @@ export interface ICategory {
 export interface IProduct {
   name: string;
   description: string;
-  // category: { id: number, name: string };
   category: ICategory;
   qty: number,
   price: number,
