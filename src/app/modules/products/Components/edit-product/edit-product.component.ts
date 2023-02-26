@@ -1,9 +1,9 @@
-import {AfterContentInit, Component, ComponentRef, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidators} from "@core/services/form-validatetors.validator";
 import {ProductService} from "@core/services/product.service";
 import {AddProductComponent} from "@components/add-product/add-product.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-product',
@@ -16,7 +16,7 @@ export class EditProductComponent implements AfterContentInit {
   productId: (string | number);
   @ViewChild("addProduct", {static: true}) addProductComponent!: AddProductComponent;
 
-  constructor(private fb: FormBuilder, private pServices: ProductService, private activeRouter: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private pServices: ProductService, private activeRouter: ActivatedRoute, private router: Router) {
     this.productId = this.activeRouter.snapshot.paramMap.get("id")!
     this.productForm = this.initForm();
     this.pServices.getById(this.productId!).subscribe(e => {
@@ -49,7 +49,14 @@ export class EditProductComponent implements AfterContentInit {
   update() {
     let data = this.productForm.getRawValue();
     if (data["discount"]) data["discount"] /= 100;
-    console.log(this)
-    this.pServices.update(this.productId, data).subscribe(e => console.log(e))
+    this.pServices.update(this.productId, data).subscribe(e => {
+      this.router.navigateByUrl("/", {skipLocationChange: true}).then(() => {
+        this.router.navigate([this.router.url, this.activeRouter.snapshot.paramMap.get("id")]).then(() => {
+            document.body.removeAttribute("style")
+            document.body.classList.remove("model-open")
+            document.body.removeChild(document.querySelector(".show")!)
+        })
+      })
+    })
   }
 }

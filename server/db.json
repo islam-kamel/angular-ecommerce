@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "Iphone",
-      "category": 1,
+      "category": "2",
       "description": "This is a wider card with supporting text below as a natural lead-in to additional\ncontent. This content is a little bit longer.",
       "image": "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "price": 3200,
